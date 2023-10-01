@@ -41,28 +41,31 @@
 
 <script lang="ts">
 // import { mapActions } from 'pinia';
-import { useStore } from '@stores/auth'
+import { userStore } from '@/stores/user'
 
 export default {
   data () {
-    const store = useStore()
+    const store = userStore()
     return {
-      counter: store.counter,
+      users: store.usersList,
       form: {
         username: '',
         password: '',
       }
     }
   },
+  mounted() {
+    console.log(this.users)
+  },
   methods: {
     // ...mapActions(['tryLogin']),
 
     async handleSubmit () {
       if (this.form.password.length && this.form.username.length) {
-        store.tryLogin({
-          identifier: this.form.username,
-          password: this.form.password
-        })
+        // store.tryLogin({
+        //   identifier: this.form.username,
+        //   password: this.form.password
+        // })
       }
     }
   }

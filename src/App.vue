@@ -1,7 +1,3 @@
-<script setup lang="ts">
-// import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
   <header>
     <!-- <div class="wrapper">
@@ -14,6 +10,16 @@
 
    <RouterView />
 </template>
+
+<script lang="ts">
+// import { RouterLink, RouterView } from 'vue-router'
+export default {
+  name: 'app',
+  mounted() {
+    console.log('oooi')
+  },
+}
+</script>
 
 <style scoped>
 
