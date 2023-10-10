@@ -5,7 +5,7 @@
         :key="columnIndex"
         class="column w-screen"
     >
-      <h2>{{ column.title }}</h2>
+      <!-- <h2>{{ column.title }}</h2> -->
       <div
           v-for="(card, cardIndex) in column.cards"
           :key="cardIndex"

@@ -3,12 +3,18 @@ import IndexPage from '../views/index-page.vue'
 import UploadPage from '../views/upload-page.vue'
 import KanbanPage from '../views/kanban-page.vue'
 import Kanban2Page from '../views/kanban2-page.vue'
+import PlayerPage from '../views/player/player-page.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.VITE_BASE_URL),
   routes: [
     {
       path: '/',
+      name: 'player',
+      component: PlayerPage
+    },
+    {
+      path: '/home',
       name: 'home',
       component: IndexPage
     },
