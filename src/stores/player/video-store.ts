@@ -5,13 +5,14 @@ import axios from "axios";
 export const useVideoStore = defineStore('video', {
     state: () => ({
         videoDetails: {},
-        playlist: []
+        playlist: [],
+        playingVideo: {}
     }),
     actions: {
-        fetchVideoInfo({videoId}) {
-            console.log(videoId);
+        fetchVideoInfo({video_id, video_url}) {
+            console.log(video_id);
             const test = import.meta.env.VITE_YOUTUBEKEY
-            axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${test}&part=snippet,contentDetails&id=${videoId}`)
+            axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${test}&part=snippet,contentDetails&id=${video_id}`)
                 .then((response) => {
                     const videoData = response.data.items[0]
                     if (!videoData) {
@@ -19,6 +20,7 @@ export const useVideoStore = defineStore('video', {
                     }
                     console.log(videoData);
                     this.videoDetails = {
+                        original_url: video_url,
                         title: videoData.snippet.title,
                         channelTitle: videoData.snippet.channelTitle,
                         duration: videoData.contentDetails.duration,
@@ -37,6 +39,9 @@ export const useVideoStore = defineStore('video', {
                 this.playlist.push(this.videoDetails)
                 this.videoDetails = {}
             }
+        },
+        addVideoInPlayer ({ video_url }) {
+            this.playingVideo = video_url
         },
         clearVideoDetails () {
             if (Object.keys(this.videoDetails).length > 0)

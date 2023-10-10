@@ -1,13 +1,17 @@
 <template>
   <button
-      class="btn btn-primary"
+      :class="{ 'btn-outline': !toggleCollapse }"
+      class="btn btn-sm btn-primary"
       @click="toggleCollapse = !toggleCollapse"
   >
     <font-awesome-icon v-if="!toggleCollapse" :icon="['fas', 'plus']" />
     <font-awesome-icon v-else :icon="['fas', 'xmark']" />
     URL
   </button>
-  <div class="collapse bg-base-200 pt-5">
+  <div
+      :class="{ 'hidden': !toggleCollapse }"
+      class="collapse bg-base-200 pt-5"
+  >
     <input
         v-model="toggleCollapse"
         type="checkbox"
@@ -132,7 +136,10 @@ export default {
       if (!videoIdMatch)
         throw new Error('URL do YouTube inválida');
       const videoId = videoIdMatch[1];
-      await this.fetchVideoInfo({ videoId })
+      await this.fetchVideoInfo({
+        video_id: videoId,
+        video_url: this.videoUrl
+      })
       this.videoUrl = ''
     },
     addVideoInPlaylist () {

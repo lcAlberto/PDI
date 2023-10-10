@@ -1,5 +1,8 @@
 <template>
-  <div class="card grid grid-cols-12 gap-3 items-center px-5 my-2">
+  <div
+      class="card grid grid-cols-12 gap-3 items-center px-5 my-2"
+      @click="playVideo"
+  >
     <div class="col-span-2">
       <img :src="video.largeThumbnailUrl"/>
     </div>
@@ -38,6 +41,8 @@
 
 import moment from "moment";
 import { formatDurationVideo } from "@/services/format-time";
+import {mapActions} from "pinia";
+import {useVideoStore} from "@/stores/player/video-store";
 
 export default {
   name: "playlist-item",
@@ -55,6 +60,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions(useVideoStore, ['addVideoInPlayer']),
+
+    playVideo () {
+      this.addVideoInPlayer(this.video.original_url)
+    },
     videoDuration (duration: string) {
       return formatDurationVideo(duration);
     },
