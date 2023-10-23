@@ -26,22 +26,49 @@ export default {
   data() {
     return {
       columns: [
-        { title: "A fazer", cards: [
-            { text: "Tarefa 0" },
-            { text: "Tarefa 1" },
-            { text: "Tarefa 2" },
-            { text: "Tarefa 3" },
-            { text: "Tarefa 4" },
-            { text: "Tarefa 5" },
-            { text: "Tarefa 6" },
-          ]},
-        { title: "Em andamento",
+        {
+          id: 1,
+          title: "A fazer",
           cards: [
-            { text: "Tarefa 7" },
-            { text: "Tarefa 8" },
-            { text: "Tarefa 9" },
-          ] },
-        { title: "Concluído", cards: [] },
+            {
+              id: 1,
+                text: "Tarefa 1"
+              },{
+                id: 2,
+                text: "Tarefa2"
+              },{
+                id: 3,
+                text: "Tarefa 3"
+              },{
+                id: 4,
+                text: "Tarefa 4"
+              },{
+                id: 5,
+                text: "Tarefa 5"
+              },
+          ]
+        },{
+          id: 2,
+          title: "fazendo",
+          cards: [
+            {
+              id: 6,
+                text: "Tarefa 6"
+              },{
+                id: 7,
+                text: "Tarefa 7"
+              },{
+                id: 8,
+                text: "Tarefa 8"
+              },{
+                id: 9,
+                text: "Tarefa 9"
+              },{
+                id: 10,
+                text: "Tarefa 10"
+              },
+          ]
+        },
       ],
       draggingColumnIndex: -1,
       draggingCardIndex: -1,

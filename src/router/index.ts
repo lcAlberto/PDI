@@ -1,21 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import DefaultLayout from "@/views/player/authenticated/default-layout.vue";
+
+import PlayerPage from '../views/player/authenticated/pages/player-page.vue'
+
 import IndexPage from '../views/index-page.vue'
 import UploadPage from '../views/upload-page.vue'
 import KanbanPage from '../views/kanban-page.vue'
 import Kanban2Page from '../views/kanban2-page.vue'
-import PlayerPage from '../views/player/player-page.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'player',
-      component: PlayerPage
+      name: 'root',
+      component: DefaultLayout,
+      children: [
+        { path: '',  component: IndexPage, name: 'home'},
+        { path: '/player',  component: PlayerPage, name: 'home'},
+        { path: '/kanban2',  component: Kanban2Page, name: 'kanban'}
+      ]
     },
     {
-      path: '/home',
-      name: 'home',
+      path: '/login',
+      name: 'login',
       component: IndexPage
     },
     {
@@ -27,11 +36,6 @@ const router = createRouter({
       path: '/kanban',
       name: 'kanban',
       component: KanbanPage
-    },
-    {
-      path: '/kanban2',
-      name: 'kanban2',
-      component: Kanban2Page
     },
     {
       path: '/about',
